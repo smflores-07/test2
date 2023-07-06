@@ -30,9 +30,7 @@ pipeline {
 					
 					script {
 						//re-create project/job folder
-						fileOperations([folderDeleteOperation(folderPath: projDir)])
-						fileOperations([folderCreateOperation(folderPath: projDir)])
-					
+						
 						scmVars = checkout([$class: 'GitSCM', branches: [[name: env.BRANCH_NAME]], userRemoteConfigs: [[credentialsId: env.JENKINS_CREDENTIALS_ID, url: env.GITHUB_URL]]])
 						
 						BRANCH="${scmVars.GIT_BRANCH}"
