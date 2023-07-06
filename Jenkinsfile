@@ -53,18 +53,9 @@ pipeline {
 	post{
 			always{
 			
-				success { 
 				//colorName: GREEN , colorCode: #00FF00
 					slackSend (channel: "${SLACK_CHANNEL}", color: '#00FF00', message: "SUCCESSFUL", tokenCredentialId: "${SLACK_TOKEN_ID}", username: '')
-			}
-			failure { 
-				//colorName: RED , colorCode: #FF0000
-					slackSend (channel: "${SLACK_CHANNEL}", color: '#FF0000', message: "FAILURE", tokenCredentialId: "${SLACK_TOKEN_ID}", username: '')
-			}
-			aborted { 
-				//colorName: GRAY , colorCode: #808080
-					slackSend (channel: "${SLACK_CHANNEL}", color: '#808080', message: "ABORTED", tokenCredentialId: "${SLACK_TOKEN_ID}", username: '')
-			}
+		
             }
 	}
 }
