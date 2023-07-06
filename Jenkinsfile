@@ -4,8 +4,8 @@ pipeline {
 
 		//PROJECT_NAME = 'sample-project'
 		//MAIN_POM_LOCATION = 'application1'
-		//BITBUCKET_URL = 'https://github.com/smflores-07/test2.git/'
-		//multiple Jira tickets should be comma-separated 
+		GITHUB_URL = 'https://github.com/smflores-07/test2.git/'
+		JENKINS_CREDENTIALS_ID = 'smflores-07'
 		
 		SLACK_CHANNEL='test'
 		SLACK_TOKEN_ID='test-ldp4148'
@@ -27,25 +27,20 @@ pipeline {
 				*/
 					//colorName: YELLOW , colorCode: #FFFF00
 					slackSend (channel: "${SLACK_CHANNEL}", teamDomain: 'test-ldp4148', color: '#FFFF00', message: "STARTED: " + new Date(currentBuild.startTimeInMillis).format("MMM dd, yyyy h:mm a", TimeZone.getTimeZone("GMT+8:00")), tokenCredentialId: "${SLACK_TOKEN_ID}", username: '')
-					/*
+					
 					script {
-						//DIRECTORY CREATION
-						//set project directory
-						projDir = env.PARENT_FOLDER + "/" + env.PROJECT_NAME
-						projJobDir = projDir + "/" + env.MAIN_POM_LOCATION
-						
 						//re-create project/job folder
 						fileOperations([folderDeleteOperation(folderPath: projDir)])
 						fileOperations([folderCreateOperation(folderPath: projDir)])
 					
-						scmVars = checkout([$class: 'GitSCM', branches: [[name: env.BRANCH_NAME]], extensions: [[$class: 'PathRestriction', excludedRegions: '', includedRegions: "${MAIN_POM_LOCATION}/.*"]], userRemoteConfigs: [[credentialsId: env.JENKINS_CREDENTIALS_ID, url: env.BITBUCKET_URL]]])
+						scmVars = checkout([$class: 'GitSCM', branches: [[name: env.BRANCH_NAME]], userRemoteConfigs: [[credentialsId: env.JENKINS_CREDENTIALS_ID, url: env.GITHUB_URL]]])
 						
 						BRANCH="${scmVars.GIT_BRANCH}"
 						println "Branch name : ${BRANCH}"
 						
 						
 					}
-					*/
+					
 				}
 			}
 			}
