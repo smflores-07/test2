@@ -4,7 +4,7 @@ pipeline {
 
 		PROJECT_NAME = 'sample-project'
 		MAIN_POM_LOCATION = 'application1'
-		BITBUCKET_URL = 'https://edo-bitbucket.globe.com.ph:8443/scm/devops/sample-java-project.git'
+		BITBUCKET_URL = 'https://github.com/smflores-07/test2.git/'
 		//multiple Jira tickets should be comma-separated 
 		
 		GOOGLE_CHAT_URL = credentials("test-google-chat")
