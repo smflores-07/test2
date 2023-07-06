@@ -26,7 +26,7 @@ pipeline {
 					)
 				*/
 					//colorName: YELLOW , colorCode: #FFFF00
-					slackSend (channel: "${SLACK_CHANNEL}", color: '#FFFF00', message: "STARTED: " + new Date(currentBuild.startTimeInMillis).format("MMM dd, yyyy h:mm a", TimeZone.getTimeZone("GMT+8:00")), tokenCredentialId: "${SLACK_TOKEN_ID}", username: '')
+					slackSend (channel: "${SLACK_CHANNEL}", teamDomain: 'test-ldp4148', color: '#FFFF00', message: "STARTED: " + new Date(currentBuild.startTimeInMillis).format("MMM dd, yyyy h:mm a", TimeZone.getTimeZone("GMT+8:00")), tokenCredentialId: "${SLACK_TOKEN_ID}", username: '')
 					/*
 					script {
 						//DIRECTORY CREATION
@@ -54,7 +54,7 @@ pipeline {
 			always{
 			
 				//colorName: GREEN , colorCode: #00FF00
-					slackSend (channel: "${SLACK_CHANNEL}", color: '#00FF00', message: "SUCCESSFUL", tokenCredentialId: "${SLACK_TOKEN_ID}", username: '')
+					slackSend (channel: "${SLACK_CHANNEL}", teamDomain: 'test-ldp4148', color: '#00FF00', message: "SUCCESSFUL", tokenCredentialId: "${SLACK_TOKEN_ID}", username: '')
 		
             }
 	}
