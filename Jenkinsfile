@@ -20,7 +20,7 @@ pipeline {
 				//colorName: YELLOW , colorCode: #FFFF00
 					slackSend (channel: "${SLACK_CHANNEL}", teamDomain: 'test-ldp4148', color: '#FFFF00', message: "STARTED: ${summary}", tokenCredentialId: "${SLACK_TOKEN_ID}", username: '')
 					
-					scmVars = checkout([$class: 'GitSCM', branches: [[name: 'dev']], userRemoteConfigs: [[url: "${GITHUB_URL}"],[credentialsId: "${JENKINS_CREDENTIALS_ID}"]]])
+					scmVars = checkout([$class: 'GitSCM', branches: [[name: "dev"]], userRemoteConfigs: [[url: "${GITHUB_URL}"],[credentialsId: "${JENKINS_CREDENTIALS_ID}"]]])
 					
 					
 				}
