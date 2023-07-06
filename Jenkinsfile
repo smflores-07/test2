@@ -3,6 +3,8 @@ pipeline {
 	environment {
       //Values must be specified for the following variables depending on project.   
 
+		//PROJECT_NAME = 'sample-project'
+		//MAIN_POM_LOCATION = 'application1'
 		GITHUB_URL = 'https://github.com/smflores-07/test2.git'
 		JENKINS_CREDENTIALS_ID = 'smflores-07'
 		
@@ -20,7 +22,7 @@ pipeline {
 				//colorName: YELLOW , colorCode: #FFFF00
 					slackSend (channel: "${SLACK_CHANNEL}", teamDomain: 'test-ldp4148', color: '#FFFF00', message: "STARTED: ${summary}", tokenCredentialId: "${SLACK_TOKEN_ID}", username: '')
 					
-					scmVars = checkout([$class: 'GitSCM', branches: [[name: "dev"]], userRemoteConfigs: [[url: "${GITHUB_URL}"],[credentialsId: "${JENKINS_CREDENTIALS_ID}"]]])
+					scmVars = checkout([$class: 'GitSCM', branches: [[name: 'refs/heads/dev']], userRemoteConfigs: [[url: "${GITHUB_URL}"],[credentialsId: "${JENKINS_CREDENTIALS_ID}"]]])
 					
 					
 				}
