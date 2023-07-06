@@ -25,12 +25,19 @@ pipeline {
 			}
 		
 	post{
-			always{
-			
-				//colorName: GREEN , colorCode: #00FF00
-					slackSend (channel: "${SLACK_CHANNEL}", teamDomain: 'test-ldp4148', color: '#00FF00', message: "SUCCESSFUL: ${summary}", tokenCredentialId: "${SLACK_TOKEN_ID}", username: '')
-		
-            }
+	
+		success { 
+			//colorName: GREEN , colorCode: #00FF00
+				slackSend (channel: "${SLACK_CHANNEL}", teamDomain: 'test-ldp4148', color: '#00FF00', message: "SUCCESSFUL: ${summary}", tokenCredentialId: "${SLACK_TOKEN_ID}", username: '')
+		}
+		failure { 
+			//colorName: RED , colorCode: #FF0000
+				slackSend (channel: "${SLACK_CHANNEL}", teamDomain: 'test-ldp4148', color: '#FF0000', message: "FAILURE: ${summary}", tokenCredentialId: "${SLACK_TOKEN_ID}", username: '')
+		}
+		aborted { 
+			//colorName: GRAY , colorCode: #808080
+				slackSend (channel: "${SLACK_CHANNEL}", teamDomain: 'test-ldp4148', color: '#808080', message: "ABORTED: ${summary}", tokenCredentialId: "${SLACK_TOKEN_ID}", username: '')
+		}
 	}
 }
 
