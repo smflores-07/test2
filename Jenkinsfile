@@ -7,7 +7,8 @@ pipeline {
 		//BITBUCKET_URL = 'https://github.com/smflores-07/test2.git/'
 		//multiple Jira tickets should be comma-separated 
 		
-		GOOGLE_CHAT_URL = credentials("test-google-chat")
+		SLACK_CHANNEL='test'
+		SLACK_TOKEN_ID='test-ldp4148'
 		
 	}
 	agent any
@@ -17,11 +18,15 @@ pipeline {
 		stages{
 			stage('Checkout Project') {
 				steps{
+				/*
 					googlechatnotification(
 						url: env.GOOGLE_CHAT_URL,
 						message: "\\n*BUILD STARTED* - " + new Date(currentBuild.startTimeInMillis).format("MMM dd, yyyy h:mm a", TimeZone.getTimeZone("GMT+8:00")),
 						sameThreadNotification: 'true'
 					)
+				*/
+					//colorName: YELLOW , colorCode: #FFFF00
+					slackSend (channel: "${SLACK_CHANNEL}", color: '#FFFF00', message: "STARTED: " + new Date(currentBuild.startTimeInMillis).format("MMM dd, yyyy h:mm a", TimeZone.getTimeZone("GMT+8:00")), tokenCredentialId: "${SLACK_TOKEN_ID}", username: '')
 					/*
 					script {
 						//DIRECTORY CREATION
@@ -47,15 +52,19 @@ pipeline {
 		
 	post{
 			always{
-				googlechatnotification(
-					url: env.GOOGLE_CHAT_URL,
-					message: "*BUILD " + currentBuild.currentResult + "* - " + new Date(currentBuild.startTimeInMillis + currentBuild.duration).format("MMM dd, yyyy h:mm a", TimeZone.getTimeZone("GMT+8:00")) +"\\n(Duration: " + new Date(currentBuild.duration).format("H:mm:ss", TimeZone.getTimeZone("GMT")) + ")",
-					notifySuccess: 'true',
-					notifyFailure: 'true',
-					notifyAborted: 'true',
-					sameThreadNotification: 'true',
-					suppressInfoLoggers: 'true'
-				)
+			
+				success { 
+				//colorName: GREEN , colorCode: #00FF00
+					slackSend (channel: "${SLACK_CHANNEL}", color: '#00FF00', message: "SUCCESSFUL", tokenCredentialId: "${SLACK_TOKEN_ID}", username: '')
+			}
+			failure { 
+				//colorName: RED , colorCode: #FF0000
+					slackSend (channel: "${SLACK_CHANNEL}", color: '#FF0000', message: "FAILURE", tokenCredentialId: "${SLACK_TOKEN_ID}", username: '')
+			}
+			aborted { 
+				//colorName: GRAY , colorCode: #808080
+					slackSend (channel: "${SLACK_CHANNEL}", color: '#808080', message: "ABORTED", tokenCredentialId: "${SLACK_TOKEN_ID}", username: '')
+			}
             }
 	}
 }
