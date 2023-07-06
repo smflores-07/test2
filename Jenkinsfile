@@ -2,9 +2,9 @@ pipeline {
 	environment {
       //Values must be specified for the following variables depending on project.   
 
-		PROJECT_NAME = 'sample-project'
-		MAIN_POM_LOCATION = 'application1'
-		BITBUCKET_URL = 'https://github.com/smflores-07/test2.git/'
+		//PROJECT_NAME = 'sample-project'
+		//MAIN_POM_LOCATION = 'application1'
+		//BITBUCKET_URL = 'https://github.com/smflores-07/test2.git/'
 		//multiple Jira tickets should be comma-separated 
 		
 		GOOGLE_CHAT_URL = credentials("test-google-chat")
@@ -22,7 +22,7 @@ pipeline {
 						message: "\\n*BUILD STARTED* - " + new Date(currentBuild.startTimeInMillis).format("MMM dd, yyyy h:mm a", TimeZone.getTimeZone("GMT+8:00")) + "\\nPipeline: ${summary}",
 						sameThreadNotification: 'true'
 					)
-					
+					/*
 					script {
 						//DIRECTORY CREATION
 						//set project directory
@@ -40,6 +40,7 @@ pipeline {
 						
 						
 					}
+					*/
 				}
 			}
 			}
