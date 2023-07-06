@@ -31,7 +31,9 @@ pipeline {
 					script {
 						//re-create project/job folder
 						
-						scmVars = checkout([$class: 'GitSCM', branches: 'dev', userRemoteConfigs: [[credentialsId: env.JENKINS_CREDENTIALS_ID, url: env.GITHUB_URL]]])
+						scmVars = checkout([$class: 'GitSCM', branches: [[name: 'refs/heads/dev']], userRemoteConfigs: [[url: "${GITHUB_URL}"],[credentialsId: "${JENKINS_CREDENTIALS_ID}"]]])
+						
+						
 						
 						BRANCH="${scmVars.GIT_BRANCH}"
 						println "Branch name : ${BRANCH}"
