@@ -19,7 +19,7 @@ pipeline {
 				steps{
 					googlechatnotification(
 						url: env.GOOGLE_CHAT_URL,
-						message: "\\n*BUILD STARTED* - " + new Date(currentBuild.startTimeInMillis).format("MMM dd, yyyy h:mm a", TimeZone.getTimeZone("GMT+8:00")) + "\\nPipeline: ${summary}",
+						message: "\\n*BUILD STARTED* - " + new Date(currentBuild.startTimeInMillis).format("MMM dd, yyyy h:mm a", TimeZone.getTimeZone("GMT+8:00")),
 						sameThreadNotification: 'true'
 					)
 					/*
@@ -49,7 +49,7 @@ pipeline {
 			always{
 				googlechatnotification(
 					url: env.GOOGLE_CHAT_URL,
-					message: "*BUILD " + currentBuild.currentResult + "* - " + new Date(currentBuild.startTimeInMillis + currentBuild.duration).format("MMM dd, yyyy h:mm a", TimeZone.getTimeZone("GMT+8:00")) +"\\n(Duration: " + new Date(currentBuild.duration).format("H:mm:ss", TimeZone.getTimeZone("GMT")) + ")\\nPipeline: ${summary}",
+					message: "*BUILD " + currentBuild.currentResult + "* - " + new Date(currentBuild.startTimeInMillis + currentBuild.duration).format("MMM dd, yyyy h:mm a", TimeZone.getTimeZone("GMT+8:00")) +"\\n(Duration: " + new Date(currentBuild.duration).format("H:mm:ss", TimeZone.getTimeZone("GMT")) + ")",
 					notifySuccess: 'true',
 					notifyFailure: 'true',
 					notifyAborted: 'true',
