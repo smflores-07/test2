@@ -4,7 +4,7 @@ pipeline {
 
 		//PROJECT_NAME = 'sample-project'
 		//MAIN_POM_LOCATION = 'application1'
-		GITHUB_URL = 'https://github.com/smflores-07/test2.git/'
+		GITHUB_URL = 'https://github.com/smflores-07/test2.git'
 		JENKINS_CREDENTIALS_ID = 'smflores-07'
 		
 		SLACK_CHANNEL='test'
